@@ -70,7 +70,6 @@ Icon=%{name}
 Terminal=false
 Type=Application
 Categories=X-MandrivaLinux-MoreApplications-Games-Arcade;Game;ArcadeGame;
-Encoding=UTF-8
 EOF
 
 %post
