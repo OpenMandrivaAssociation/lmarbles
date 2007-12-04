@@ -14,7 +14,7 @@ Source2:	%{name}32.png
 Source3:	%{name}48.png
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
-BuildRequires:	SDL-devel libSDL_mixer-devel XFree86-devel alsa-lib-devel
+BuildRequires:	SDL-devel libSDL_mixer-devel X11-devel alsa-lib-devel
 BuildRequires:	filesystem esound-devel texinfo
 Provides:	marbles
 Obsoletes:	marbles
