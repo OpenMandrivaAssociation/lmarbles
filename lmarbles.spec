@@ -18,7 +18,6 @@ BuildRequires:	SDL-devel libSDL_mixer-devel X11-devel alsa-lib-devel
 BuildRequires:	filesystem esound-devel texinfo
 Provides:	marbles
 Obsoletes:	marbles
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 
 %description
 LMarbles is very similar to Atomix and was heavily inspired by it. Goal is to
