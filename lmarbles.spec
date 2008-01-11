@@ -47,17 +47,6 @@ install -D -m644 %SOURCE1 %{buildroot}%{_iconsdir}/%{name}.png
 install -D -m644 %SOURCE2 %{buildroot}%{_miconsdir}/%{name}.png
 install -D -m644 %SOURCE3 %{buildroot}%{_liconsdir}/%{name}.png
 
-mkdir -p %{buildroot}/%{_menudir}
-cat << EOF > %{buildroot}/%{_menudir}/%{name}
-?package(%{name}): \
-needs=x11 \
-section="More Applications/Games/Boards" \
-title="Marbles" \
-longtitle="%{Summary}" \
-command="%{_gamesbindir}/%{name}" \
-icon="%{name}.png" \
-xdg="true"
-EOF
 
 # XDG menu
 install -d %{buildroot}%{_datadir}/applications
@@ -90,7 +79,6 @@ rm -rf %{buildroot}
 %attr(0664,games,games) %{_localstatedir}/games/%{name}.prfs
 %{_gamesdatadir}/%{name}
 %{_mandir}/man6/*
-%{_menudir}/*
 %{_iconsdir}/*
 %{_miconsdir}/*
 %{_liconsdir}/*
