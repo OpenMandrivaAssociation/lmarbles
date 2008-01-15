@@ -3,7 +3,7 @@
 Summary:	%{Summary}
 Name:		lmarbles
 Version:	1.0.7
-Release:	%mkrel 4
+Release:	%mkrel 5
 Epoch:		1
 License:	GPL
 Group:		Games/Boards
