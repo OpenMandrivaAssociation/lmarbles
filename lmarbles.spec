@@ -34,14 +34,14 @@ teleports!
 
 %build
 %configure \
-    --localstatedir=%{_localstatedir}/games \
+    --localstatedir=%{_localstatedir}/lib/games \
     --datadir=%{_gamesdatadir}
 %make
 
 %install
 rm -rf %{buildroot}
 
-%makeinstall inst_dir="%{buildroot}%{_gamesdatadir}/%{name}" prf_dir="%{buildroot}%{_localstatedir}/games" bindir="%{buildroot}%{_gamesbindir}"
+%makeinstall inst_dir="%{buildroot}%{_gamesdatadir}/%{name}" prf_dir="%{buildroot}%{_localstatedir}/lib/games" bindir="%{buildroot}%{_gamesbindir}"
 
 install -D -m644 %SOURCE1 %{buildroot}%{_iconsdir}/%{name}.png
 install -D -m644 %SOURCE2 %{buildroot}%{_miconsdir}/%{name}.png
@@ -76,7 +76,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc README
 %attr(2755,root,games) %{_gamesbindir}/*
-%attr(0664,games,games) %{_localstatedir}/games/%{name}.prfs
+%attr(0664,games,games) %{_localstatedir}/lib/games/%{name}.prfs
 %{_gamesdatadir}/%{name}
 %{_mandir}/man6/*
 %{_iconsdir}/*
