@@ -3,10 +3,10 @@
 Summary:	%{Summary}
 Name:		lmarbles
 Version:	1.0.7
-Release:	%mkrel 8
+Release:	%mkrel 9
 Epoch:		1
 License:	GPL
-Group:		Games/Boards
+Group:		Games/Puzzles
 URL:		http://lgames.sourceforge.net/index.php?project=LMarbles
 Source0:	http://lgames.sourceforge.net/marbleslgames/%{name}-%{version}.tar.bz2
 Source1:	%{name}16.png
