@@ -3,7 +3,7 @@
 Summary:	%{Summary}
 Name:		lmarbles
 Version:	1.0.7
-Release:	%mkrel 7
+Release:	%mkrel 8
 Epoch:		1
 License:	GPL
 Group:		Games/Boards
@@ -12,10 +12,7 @@ Source0:	http://lgames.sourceforge.net/marbleslgames/%{name}-%{version}.tar.bz2
 Source1:	%{name}16.png
 Source2:	%{name}32.png
 Source3:	%{name}48.png
-Requires(post): desktop-file-utils
-Requires(postun): desktop-file-utils
-BuildRequires:	SDL-devel libSDL_mixer-devel X11-devel alsa-lib-devel
-BuildRequires:	filesystem esound-devel texinfo
+BuildRequires:	SDL-devel libSDL_mixer-devel
 Provides:	marbles
 Obsoletes:	marbles
 BuildRoot:	%{_tmppath}/%{name}-buildroot
@@ -29,24 +26,23 @@ even more interesting there are obstacles like arrows, crumbling walls and
 teleports!
 
 %prep
-
 %setup -q
 
 %build
-%configure \
+%configure2_5x \
     --localstatedir=%{_localstatedir}/lib/games \
-    --datadir=%{_gamesdatadir}
+    --datadir=%{_gamesdatadir} \
+    --bindir=%{_gamesbindir}
+
 %make
 
 %install
 rm -rf %{buildroot}
-
-%makeinstall inst_dir="%{buildroot}%{_gamesdatadir}/%{name}" prf_dir="%{buildroot}%{_localstatedir}/lib/games" bindir="%{buildroot}%{_gamesbindir}"
+%makeinstall_std
 
 install -D -m644 %SOURCE1 %{buildroot}%{_iconsdir}/%{name}.png
 install -D -m644 %SOURCE2 %{buildroot}%{_miconsdir}/%{name}.png
 install -D -m644 %SOURCE3 %{buildroot}%{_liconsdir}/%{name}.png
-
 
 # XDG menu
 install -d %{buildroot}%{_datadir}/applications
@@ -58,7 +54,7 @@ Exec=%{_gamesbindir}/%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
-Categories=X-MandrivaLinux-MoreApplications-Games-Arcade;Game;ArcadeGame;
+Categories=Game;LogicGame;
 EOF
 
 %if %mdkversion < 200900
@@ -87,5 +83,3 @@ rm -rf %{buildroot}
 %{_miconsdir}/*
 %{_liconsdir}/*
 %{_datadir}/applications/mandriva-%{name}.desktop
-
-
