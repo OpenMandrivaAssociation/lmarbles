@@ -2,17 +2,16 @@
 
 Summary:	%{Summary}
 Name:		lmarbles
-Version:	1.0.7
-Release:	%mkrel 10
+Version:	1.0.8
+Release:	%mkrel 1
 Epoch:		1
-License:	GPL
+License:	GPLv2+
 Group:		Games/Puzzles
 URL:		http://lgames.sourceforge.net/index.php?project=LMarbles
-Source0:	http://lgames.sourceforge.net/marbleslgames/%{name}-%{version}.tar.bz2
-Source1:	%{name}16.png
-Source2:	%{name}32.png
-Source3:	%{name}48.png
-BuildRequires:	SDL-devel libSDL_mixer-devel
+Source0:	http://lgames.sourceforge.net/marbleslgames/%{name}-%{version}.tar.gz
+BuildRequires:	SDL-devel
+BuildRequires:	libSDL_mixer-devel
+BuildRequires:	imagemagick
 Provides:	marbles
 Obsoletes:	marbles
 BuildRoot:	%{_tmppath}/%{name}-buildroot
@@ -40,33 +39,33 @@ teleports!
 rm -rf %{buildroot}
 %makeinstall_std
 
-install -D -m644 %SOURCE1 %{buildroot}%{_iconsdir}/%{name}.png
-install -D -m644 %SOURCE2 %{buildroot}%{_miconsdir}/%{name}.png
-install -D -m644 %SOURCE3 %{buildroot}%{_liconsdir}/%{name}.png
+# Correct icon and .desktop paths
+mkdir -p %{buildroot}%{_datadir}/{applications,icons/hicolor/48x48/apps}
+mv %{buildroot}%{_gamesdatadir}/applications/%{name}.desktop %{buildroot}%{_datadir}/applications
+mv %{buildroot}%{_gamesdatadir}/icons/%{name}48.gif %{buildroot}%{_iconsdir}/hicolor/48x48/apps
 
-# XDG menu
-install -d %{buildroot}%{_datadir}/applications
-cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
-[Desktop Entry]
-Name=Marbles
-Comment=%{Summary}
-Exec=%{_gamesbindir}/%{name}
-Icon=%{name}
-Terminal=false
-Type=Application
-Categories=Game;LogicGame;
-EOF
+# convert icon
+convert %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}48.gif  %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+rm -f %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}48.gif
+
+# fix desktop file
+sed -i -e "s/\/usr\/share\/games\/icons\/%{name}48.gif/%{name}/g" %{buildroot}%{_datadir}/applications/%{name}.desktop
+desktop-file-install --add-category=LogicGame \
+		     --dir %{buildroot}%{_datadir}/applications/ \
+		     %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %if %mdkversion < 200900
 %post
 %update_menus
 %update_desktop_database
+%update_icon_cache hicolor
 %endif
 
 %if %mdkversion < 200900
 %postun
 %clean_menus
 %clean_desktop_database
+%update_icon_cache hicolor
 %endif
 
 %clean
@@ -79,7 +78,5 @@ rm -rf %{buildroot}
 %attr(0664,games,games) %{_localstatedir}/lib/games/%{name}.prfs
 %{_gamesdatadir}/%{name}
 %{_mandir}/man6/*
-%{_iconsdir}/*
-%{_miconsdir}/*
-%{_liconsdir}/*
-%{_datadir}/applications/mandriva-%{name}.desktop
+%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+%{_datadir}/applications/%{name}.desktop
