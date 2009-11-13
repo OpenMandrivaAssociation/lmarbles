@@ -12,6 +12,7 @@ Source0:	http://lgames.sourceforge.net/marbleslgames/%{name}-%{version}.tar.gz
 BuildRequires:	SDL-devel
 BuildRequires:	libSDL_mixer-devel
 BuildRequires:	imagemagick
+Buildrequires:	desktop-file-utils
 Provides:	marbles
 Obsoletes:	marbles
 BuildRoot:	%{_tmppath}/%{name}-buildroot
