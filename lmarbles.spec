@@ -3,7 +3,7 @@
 Summary:	%{Summary}
 Name:		lmarbles
 Version:	1.0.8
-Release:	%mkrel 2
+Release:	%mkrel 3
 Epoch:		1
 License:	GPLv2+
 Group:		Games/Puzzles
