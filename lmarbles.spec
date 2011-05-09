@@ -10,7 +10,7 @@ Group:		Games/Puzzles
 URL:		http://lgames.sourceforge.net/index.php?project=LMarbles
 Source0:	http://lgames.sourceforge.net/marbleslgames/%{name}-%{version}.tar.gz
 BuildRequires:	SDL-devel
-BuildRequires:	libSDL_mixer-devel
+BuildRequires:	SDL_mixer-devel
 BuildRequires:	imagemagick
 Buildrequires:	desktop-file-utils
 Provides:	marbles
