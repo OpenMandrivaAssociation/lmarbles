@@ -2,7 +2,7 @@ Summary:	Summary Atomix-style arcade game
 Name:		lmarbles
 Epoch:		1
 Version:	1.0.8
-Release:	14
+Release:	15
 License:	GPLv2+
 Group:		Games/Puzzles
 Url:		http://lgames.sourceforge.net/index.php?project=LMarbles
