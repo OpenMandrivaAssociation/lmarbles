@@ -5,7 +5,7 @@ Version:	1.0.8
 Release:	16
 License:	GPLv2+
 Group:		Games/Puzzles
-Url:		http://lgames.sourceforge.net/index.php?project=LMarbles
+Url:		https://lgames.sourceforge.net/index.php?project=LMarbles
 Source0:	http://lgames.sourceforge.net/marbleslgames/%{name}-%{version}.tar.gz
 Buildrequires:	desktop-file-utils
 BuildRequires:	imagemagick
